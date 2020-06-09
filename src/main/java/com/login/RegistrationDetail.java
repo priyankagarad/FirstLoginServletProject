@@ -9,11 +9,11 @@ import java.sql.*;
 
 @WebServlet("/save")
 public class RegistrationDetail extends HttpServlet {
-        protected void doPost(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
         {
             try {
                 PreparedStatement st = ConnectionClass.getConnection().prepareStatement
-                    ("insert into customer(Name,EmailId,Password,RegisteredDate) values(?,?,?,?)");
+                        ("insert into customer(Name,EmailId,Password,RegisteredDate) values(?,?,?,?)");
                 st.setString(1, request.getParameter("Name"));
                 st.setString(2, request.getParameter("EmailId"));
                 st.setString(3, request.getParameter("Password"));
@@ -24,7 +24,6 @@ public class RegistrationDetail extends HttpServlet {
 
                 response.sendRedirect("saveData.jsp");
                 st.close();
-                ConnectionClass.getConnection().close();
             }
             catch (Exception e) {
                 e.printStackTrace();

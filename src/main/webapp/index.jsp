@@ -11,9 +11,9 @@
     <title> Login form </title>
 <div class = "form">
     <div action="Login">
-        <form action="save" method="post">
-        <input type="text" placeholder="UserName">
-        <input type="password" placeholder="Password">
+        <form action="Login" >
+        <input type="text" name="UserName" placeholder="UserName">
+        <input type="password" name="Password" placeholder="Password">
         <input type="submit" name="submit" value="Login">
         <a href="Registration.jsp">Registration</a>
         </form>
