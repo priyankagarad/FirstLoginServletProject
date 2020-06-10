@@ -4,6 +4,11 @@
     <title>Title</title>
 </head>
 <body>
-****** Registration successfully ******
+<Center>
+</br>
+</br>
+    <p><font size="7" color="#00ff00">Registration successfully</font></p>
+    <link rel="stylesheet" href="style.css">
+</Center>
 </body>
 </html>

@@ -20,9 +20,8 @@ public class RegistrationDetail extends HttpServlet {
                 st.setString(4, request.getParameter("RegisteredDate"));
 
                 st.executeUpdate();
-                System.out.println("data save successfully");
 
-                response.sendRedirect("saveData.jsp");
+                response.sendRedirect("index.jsp");
                 st.close();
             }
             catch (Exception e) {

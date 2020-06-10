@@ -21,13 +21,13 @@ public class Login extends HttpServlet {
         PrintWriter out = response.getWriter();
         String UserName = request.getParameter("UserName");
         String Password = request.getParameter("Password");
-        Pattern pattern1 = null;
-        Pattern pattern2 = null;
-        pattern1 = pattern1.compile("[A-Z][a-z 0-9]{3,}");
-        pattern2 = pattern2.compile("[0-9]{4,}");
+        Pattern userName = null;
+        Pattern password = null;
+        userName = userName.compile("[A-Z][a-z 0-9]{3,}");
+        password = password.compile("[0-9]{4,}");
         boolean isPresent = false;
 
-        if ((pattern1.matches(valueOf(pattern1), UserName)) && (pattern2.matches(valueOf(pattern2), Password))) {
+        if ((userName.matches(valueOf(userName), UserName)) && (password.matches(valueOf(password), Password))) {
             System.out.println("in loop");
             try {
                 PreparedStatement ps = ConnectionClass.getConnection().prepareStatement("select * from customer where Name=\'"+UserName+"\'" +
@@ -46,12 +46,12 @@ public class Login extends HttpServlet {
             }
 
             if (isPresent) {
-                RequestDispatcher rd=request.getRequestDispatcher("Login");
+                RequestDispatcher rd=request.getRequestDispatcher("/Welcome.jsp");
                 rd.forward(request, response);
             }
 
         } else {
-            out.print("Sorry UserName or Password Error!");
+            out.print(" UserName or Password Invalid!");
             RequestDispatcher rd=request.getRequestDispatcher("/index.jsp");
             rd.include(request, response);
         }
