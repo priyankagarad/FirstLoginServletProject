@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/reg")
 public class Registration extends HttpServlet{
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws  IOException {
+        response.sendRedirect("Registration.jsp");
     }
 }

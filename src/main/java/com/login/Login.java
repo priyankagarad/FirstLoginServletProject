@@ -12,26 +12,25 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.regex.Pattern;
 import static java.lang.String.valueOf;
-
 @WebServlet("/Login")
 public class Login extends HttpServlet {
     private String message;
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         PrintWriter out = response.getWriter();
-        String UserName = request.getParameter("UserName");
-        String Password = request.getParameter("Password");
-        Pattern userName = null;
-        Pattern password = null;
-        userName = userName.compile("[A-Z][a-z 0-9]{3,}");
-        password = password.compile("[0-9]{4,}");
+        String userName = request.getParameter("UserName");
+        String password = request.getParameter("Password");
+        Pattern userNamePattern = null;
+        Pattern passwordPattern = null;
+        userNamePattern = userNamePattern.compile("[A-Z][a-z 0-9]{3,}");
+        passwordPattern = passwordPattern.compile("[0-9]{4,}");
         boolean isPresent = false;
 
-        if ((userName.matches(valueOf(userName), UserName)) && (password.matches(valueOf(password), Password))) {
+        if ((userNamePattern.matches(valueOf(userNamePattern), userName)) && (passwordPattern.matches(valueOf(passwordPattern), password))) {
             System.out.println("in loop");
             try {
-                PreparedStatement ps = ConnectionClass.getConnection().prepareStatement("select * from customer where Name=\'"+UserName+"\'" +
-                        "AND Password=\'"+Password+"\'");
+                PreparedStatement ps = ConnectionClass.getConnection().prepareStatement("select * from customer where Name=\'"+userName+"\'" +
+                        "AND Password=\'"+password+"\'");
                 ResultSet rs = ps.executeQuery();
 
                 while (rs.next()) {
@@ -46,8 +45,9 @@ public class Login extends HttpServlet {
             }
 
             if (isPresent) {
-                RequestDispatcher rd=request.getRequestDispatcher("/Welcome.jsp");
-                rd.forward(request, response);
+                out.print(" Login successfully");
+                RequestDispatcher rd=request.getRequestDispatcher("/index.jsp");
+                rd.include(request, response);
             }
 
         } else {
